@@ -621,7 +621,7 @@
     },
 
     isXHRSupported: function() {
-      var XHR = window.XMLHttpRequest;
+      var XHR = xhook.XMLHttpRequest;
       return XHR && (new XHR()).withCredentials !== undefined;
     },
 
@@ -3916,7 +3916,7 @@
       if (Pusher.XHR) {
         xhr = new Pusher.XHR();
       } else {
-        xhr = (window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"));
+        xhr = (xhook.XMLHttpRequest ? new xhook.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"));
       }
 
       xhr.open("POST", self.options.authEndpoint, true);

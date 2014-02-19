@@ -82,7 +82,7 @@
 ;(function() {
   var hooks = {
     getRequest: function(socket) {
-      var xhr = new window.XMLHttpRequest();
+      var xhr = new xhook.XMLHttpRequest();
       xhr.onreadystatechange = xhr.onprogress = function() {
         switch (xhr.readyState) {
           case 3:

@@ -714,7 +714,7 @@ AbstractXHRObject.prototype._start = function(method, url, payload, opts) {
     var that = this;
 
     try {
-        that.xhr = new XMLHttpRequest();
+        that.xhr = new xhook.XMLHttpRequest();
     } catch(x) {};
 
     if (!that.xhr) {
@@ -740,7 +740,7 @@ AbstractXHRObject.prototype._start = function(method, url, payload, opts) {
     };
 
     if (!opts || !opts.no_credentials) {
-        // Mozilla docs says https://developer.mozilla.org/en/XMLHttpRequest :
+        // Mozilla docs says https://developer.mozilla.org/en/xhook.XMLHttpRequest :
         // "This never affects same-site requests."
         that.xhr.withCredentials = 'true';
     }
@@ -886,7 +886,7 @@ XDRObject.prototype.close = function() {
 // 4. Nope, sorry.
 utils.isXHRCorsCapable = function(url) {
     var protocol = url.match(/^(https?:)/)[0];
-    if (_window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()) {
+    if (xhook.XMLHttpRequest && 'withCredentials' in new xhook.XMLHttpRequest()) {
         return 1;
     }
     // XDomainRequest doesn't work if page is served from file://
@@ -2061,7 +2061,7 @@ var XhrPollingIframeTransport = SockJS['iframe-xhr-polling'] = function () {
 XhrPollingIframeTransport.prototype = new IframeTransport();
 
 XhrPollingIframeTransport.enabled = function () {
-    return _window.XMLHttpRequest && IframeTransport.enabled();
+    return xhook.XMLHttpRequest && IframeTransport.enabled();
 };
 
 XhrPollingIframeTransport.need_body = true;
